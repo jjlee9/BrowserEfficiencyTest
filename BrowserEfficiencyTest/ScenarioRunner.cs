@@ -462,12 +462,14 @@ namespace BrowserEfficiencyTest
 #if (!ADK)
                 // Start tracing
                 elevatorClient.SendControllerMessageAsync($"{Elevator.Commands.START_BROWSER} {browser} ITERATION {iteration} SCENARIO_NAME {workloadName} WPRPROFILE {wprProfileName} MODE {tracingMode}").Wait();
+#endif
                 if(!string.IsNullOrEmpty(_executeScriptFileName))
                 {
                     // execute the selected script and pass "STARTSCENARIO"+<scenario>+<iteration>
                     ExecuteScript(_executeScriptFileName, "STARTSCENARIO " + _scenarios[0].ScenarioName + " " + iteration.ToString());
                 }
 
+#if (!ADK)
                 if (usingTraceController)
                 {
                     Logger.LogWriteLine(string.Format("  Pausing {0} seconds after starting the trace session to reduce interference.", _e3RefreshDelaySeconds));
@@ -515,7 +517,6 @@ namespace BrowserEfficiencyTest
                                 // Start tracing for the current scenario
                                 elevatorClient.SendControllerMessageAsync($"{Elevator.Commands.START_BROWSER} {browser} ITERATION {iteration} SCENARIO_NAME {workloadName} WPRPROFILE {wprProfileName} MODE {tracingMode}").Wait();
 #endif
-<<<<<<< HEAD
                             }
 
                             if (!string.IsNullOrEmpty(_executeScriptFileName) && scenarioIndex > 0)
@@ -525,8 +526,6 @@ namespace BrowserEfficiencyTest
 
                                 // execute the selected script and pass "STARTSCENARIO"+<scenario>+<iteration>
                                 ExecuteScript(_executeScriptFileName, "STARTSCENARIO " + currentScenario.ScenarioName + " " + iteration.ToString());
-=======
->>>>>>> 3a4f454e1769a027b63cfffee7b9989fc099be50
                             }
 
                             // Save the name of the current scenarion in case an exception is thrown in which case the local variable 'currentScenario' will be lost
@@ -606,15 +605,12 @@ namespace BrowserEfficiencyTest
                         // and put everything back into a state where we can start the next iteration.
                         elevatorClient.SendControllerMessageAsync(Elevator.Commands.CANCEL_PASS);
 #endif
-<<<<<<< HEAD
 
                         if (!string.IsNullOrEmpty(_executeScriptFileName))
                         {
                             // execute the selected script and pass "FAIL"
                             ExecuteScript(_executeScriptFileName, "FAIL");
                         }
-=======
->>>>>>> 3a4f454e1769a027b63cfffee7b9989fc099be50
 
                         try
                         {

@@ -67,8 +67,8 @@ namespace BrowserEfficiencyTest
         public string BrowserEfficiencyTestVersion { get; private set; }
 #if (!ADK)
         public bool CaptureBaseline { get; private set; }
-#endif
         public int BaselineCaptureSeconds { get; private set; }
+#endif
         public bool ClearBrowserCache { get; private set; }
         public bool DoWarmupRun { get; private set; }
         public string Host { get; private set; }
@@ -139,8 +139,8 @@ namespace BrowserEfficiencyTest
             BrowserEfficiencyTestVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
 #if (!ADK)
             CaptureBaseline = false;
-#endif
             BaselineCaptureSeconds = 600; // 10 minutes as the default
+#endif
             ClearBrowserCache = false;
             DoWarmupRun = false;
             Host = "localhost";
